@@ -5,6 +5,11 @@ import colors from 'colors';
 import path from 'path';
 import connectDB from './config/db.js';
 
+import userRoutes from './routes/userRoutes.js';
+import postRoutes from './routes/postRoutes.js';
+import profileRoutes from './routes/profileRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+
 // ENV Config
 dotenv.config();
 
@@ -17,6 +22,14 @@ const app = express();
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
+
+app.use(express.json());
+
+// App Routes
+app.use('/api/users', userRoutes);
+app.use('/api/posts', postRoutes);
+app.use('/api/profiles', profileRoutes);
+app.use('/api/auth', authRoutes);
 
 const __dirname = path.resolve();
 
