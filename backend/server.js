@@ -23,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+// Using JSON
 app.use(express.json());
 
 // App Routes
@@ -33,6 +34,7 @@ app.use('/api/auth', authRoutes);
 
 const __dirname = path.resolve();
 
+// API Running
 if (process.env.NODE_ENV == 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build')));
 

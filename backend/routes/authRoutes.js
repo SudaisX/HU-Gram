@@ -1,7 +1,8 @@
 import express from 'express';
+import { auth } from '../controllers/authController.js';
+import { protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
-import { testController } from '../controllers/authController.js';
 
-router.get('/', testController);
+router.get('/', protect, auth);
 
 export default router;
