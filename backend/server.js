@@ -29,7 +29,7 @@ app.use(express.json());
 // App Routes
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
-app.use('/api/profiles', profileRoutes);
+app.use('/api/profile', profileRoutes);
 app.use('/api/auth', authRoutes);
 
 const __dirname = path.resolve();
