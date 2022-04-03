@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
         return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
     }
 
-    // Get User Gravatar
+    // Get User Gravatar // Replace it with a default kabbu image
     const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
