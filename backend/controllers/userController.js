@@ -3,6 +3,7 @@ import { validationResult } from 'express-validator';
 import gravatar from 'gravatar';
 import generateToken from '../utils/generateToken.js';
 import User from '../models/userModel.js';
+import Profile from '../models/profileModel.js';
 
 // @desc    Register a New User
 // @route   POST api/users
@@ -49,4 +50,28 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 });
 
-export { registerUser };
+// @desc    Delete Profile, User and Posts
+// @route   DELETE api/users/:userId
+// @access  Private & Admin
+const deleteUser = asyncHandler(async (req, res) => {
+    try {
+        // @todo Remove User's Posts
+
+        // Remove Profile
+        await Profile.findOneAndRemove({ user: req.params.userId });
+
+        // Remove User
+        await User.findOneAndRemove({ _id: req.params.userId });
+
+        res.json({ msg: 'User and their Profile and their Posts have been deleted' });
+    } catch (error) {
+        console.error(error.message);
+        if (error.kind == 'ObjectId') {
+            return res.status(400).json({ msg: 'Profile not found' });
+        }
+
+        res.status(500).send('Server Error');
+    }
+});
+
+export { registerUser, deleteUser };

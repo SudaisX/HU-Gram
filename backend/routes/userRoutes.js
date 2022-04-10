@@ -1,6 +1,7 @@
 import express from 'express';
 import { check } from 'express-validator';
-import { registerUser } from '../controllers/userController.js';
+import { deleteUser, registerUser } from '../controllers/userController.js';
+import { isAdmin, protect } from '../middleware/authMiddleware.js';
 
 // User Express Router
 const router = express.Router();
@@ -13,5 +14,5 @@ const validationChecks = [
 ];
 
 router.route('/').post(validationChecks, registerUser);
-
+router.route('/:userId').delete(protect, isAdmin, deleteUser);
 export default router;
