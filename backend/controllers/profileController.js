@@ -122,4 +122,27 @@ const getAllProfiles = asyncHandler(async (req, res) => {
     }
 });
 
-export { getCurrProfile, updateProfile, getAllProfiles };
+// @desc    Get Profile by User ID
+// @route   GET api/profile/user/:userId
+// @access  Private
+const getUserProfile = asyncHandler(async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.params.userId }).populate('user', [
+            'name',
+            'avatar',
+        ]);
+
+        if (!profile) return res.status(400).json({ msg: 'Profile not found' });
+
+        res.json(profile);
+    } catch (error) {
+        console.error(error.message);
+        if (error.kind == 'ObjectId') {
+            return res.status(400).json({ msg: 'Profile not found' });
+        }
+
+        res.status(500).send('Server Error');
+    }
+});
+
+export { getCurrProfile, updateProfile, getAllProfiles, getUserProfile };
