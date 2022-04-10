@@ -179,4 +179,35 @@ const updateExperience = asyncHandler(async (req, res) => {
     }
 });
 
-export { getCurrProfile, updateProfile, getAllProfiles, getUserProfile, updateExperience };
+// @desc    Delete Experience by ID
+// @route   DELETE api/profile/experience/:expId
+// @access  Private
+const deleteExperience = asyncHandler(async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+
+        // Get remove index
+        const removeIndex = profile.experience.map((exp) => exp.id).indexOf(req.params.expId);
+
+        console.log(profile.experience);
+        console.log(removeIndex);
+
+        profile.experience.splice(removeIndex, 1);
+
+        await profile.save();
+
+        res.json(profile);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+export {
+    getCurrProfile,
+    updateProfile,
+    getAllProfiles,
+    getUserProfile,
+    updateExperience,
+    deleteExperience,
+};

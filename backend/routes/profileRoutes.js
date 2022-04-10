@@ -9,6 +9,7 @@ import {
     getAllProfiles,
     getUserProfile,
     updateExperience,
+    deleteExperience,
 } from '../controllers/profileController.js';
 
 // Checks when you create/update profile
@@ -27,6 +28,7 @@ const experienceChecks = [
 router.route('/').get(protect, getAllProfiles).post(protect, profileChecks, updateProfile);
 router.route('/me').get(protect, getCurrProfile);
 router.route('/experience').put(protect, experienceChecks, updateExperience);
+router.route('/experience/:expId').delete(protect, deleteExperience);
 // router.route('/education').put(protect, getUserProfile);
 router.route('/user/:userId').get(protect, getUserProfile);
 
