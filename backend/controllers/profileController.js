@@ -203,6 +203,65 @@ const deleteExperience = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc    Add/Update education in Profile
+// @route   PUT api/profile/education
+// @access  Private
+const updateEducation = asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { school, degree, fieldofstudy, location, from, to, current, description } = req.body;
+    const newEducation = {
+        school,
+        degree,
+        fieldofstudy,
+        location,
+        from,
+        to,
+        current,
+        description,
+    };
+
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+
+        profile.education.unshift(newEducation);
+
+        await profile.save();
+
+        res.json(profile);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @desc    Delete education by ID
+// @route   DELETE api/profile/education/:eduId
+// @access  Private
+const deleteEducation = asyncHandler(async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+
+        // Get remove index
+        const removeIndex = profile.education.map((exp) => exp.id).indexOf(req.params.eduId);
+
+        console.log(profile.education);
+        console.log(removeIndex);
+
+        profile.education.splice(removeIndex, 1);
+
+        await profile.save();
+
+        res.json(profile);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 export {
     getCurrProfile,
     updateProfile,
@@ -210,4 +269,6 @@ export {
     getUserProfile,
     updateExperience,
     deleteExperience,
+    updateEducation,
+    deleteEducation,
 };
