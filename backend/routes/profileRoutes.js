@@ -41,7 +41,6 @@ router.route('/experience').put(protect, experienceChecks, updateExperience);
 router.route('/experience/:expId').delete(protect, deleteExperience);
 router.route('/education').put(protect, educationChecks, updateEducation);
 router.route('/education/:eduId').delete(protect, deleteEducation);
-// router.route('/education').put(protect, getUserProfile);
 router.route('/user/:userId').get(protect, getUserProfile);
 
 export default router;
