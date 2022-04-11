@@ -69,14 +69,29 @@ const getPostById = asyncHandler(async (req, res) => {
 });
 
 // @desc    Delete Post by ID
-// @route   Delete api/posts/Id
+// @route   DELETE api/posts/:id
 // @access  Private
 const deletePostById = asyncHandler(async (req, res) => {
     try {
-        const posts = await Post.find().sort({ createdAt: -1 });
-        res.json(posts);
+        const post = await Post.findById(req.params.id);
+
+        if (!post) {
+            return res.status(404).json({ msg: 'Post not found' });
+        }
+
+        // Check if User owns the Post
+        if (post.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'User not authorized' });
+        }
+
+        await post.remove();
+
+        res.json({ msg: 'Post removed' });
     } catch (error) {
         console.error(error.message);
+        if (error.kind === 'ObjectId') {
+            return res.status(404).json({ msg: 'Post not found' });
+        }
         res.status(500).send('Server Error');
     }
 });
