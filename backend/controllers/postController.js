@@ -46,4 +46,39 @@ const getAllPosts = asyncHandler(async (req, res) => {
     }
 });
 
-export { createPost, getAllPosts };
+// @desc    Get Post by ID
+// @route   GET api/posts/:id
+// @access  Private
+const getPostById = asyncHandler(async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+
+        if (!post) {
+            return res.status(404).json({ msg: 'Post not found' });
+        }
+
+        res.json(post);
+    } catch (error) {
+        console.error(error.message);
+        if (error.kind === 'ObjectId') {
+            return res.status(404).json({ msg: 'Post not found' });
+        }
+
+        res.status(500).send('Server Error');
+    }
+});
+
+// @desc    Delete Post by ID
+// @route   Delete api/posts/Id
+// @access  Private
+const deletePostById = asyncHandler(async (req, res) => {
+    try {
+        const posts = await Post.find().sort({ createdAt: -1 });
+        res.json(posts);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+export { createPost, getAllPosts, getPostById, deletePostById };
