@@ -27,7 +27,7 @@ const postSchema = new mongoose.Schema(
                 },
             },
         ],
-        likes: [
+        comments: [
             {
                 user: {
                     type: mongoose.Schema.Types.ObjectId,
