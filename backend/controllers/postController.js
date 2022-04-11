@@ -213,11 +213,8 @@ const deleteComment = asyncHandler(async (req, res) => {
             return res.status(401).json({ msg: 'User not authorized' });
         }
 
-        // Get remove index
-        const removeIndex = post.comments
-            .map((comment) => comment.user.toString())
-            .indexOf(req.user.id);
-        post.comments.splice(removeIndex, 1);
+        // remove comment
+        post.comments = post.comments.filter(({ id }) => id !== req.params.commentId);
 
         await post.save();
 
