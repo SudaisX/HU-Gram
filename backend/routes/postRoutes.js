@@ -7,6 +7,7 @@ import {
     deletePostById,
     getAllPosts,
     getPostById,
+    likePost,
 } from '../controllers/postController.js';
 
 // Post Checks
@@ -14,5 +15,6 @@ const postChecks = [check('text', 'Text is required').notEmpty()];
 
 router.route('/').post(protect, postChecks, createPost).get(protect, getAllPosts);
 router.route('/:id').get(protect, getPostById).delete(protect, deletePostById);
+router.route('/:id/like').put(protect, likePost);
 
 export default router;
