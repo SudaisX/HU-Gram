@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: 'Ramona-Light';
+    src: url('./fonts/Harmond/Ramona-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Source-Serif-Pro';
+    src: url('./fonts/source-serif-pro/SourceSerifPro-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Lemon-Milk';
+    src: url('./fonts/lemon_milk/LEMONMILK-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Ramona-Bold';
+    src: url('./fonts/Harmond/Ramona-Bold.ttf');
+}
+
+:root {
+    --color1: #a75638;
+    --color2: #edd58d;
+    --color3: #6a163a;
+    --color4: #907560;
+    --color5: #b19276;
+    --color6: #edd5b8;
+    --color7: #fffbeb;
+}
+
+/* Global
+----------------------------------------------- */
+*,
+*:before,
+*::after {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+.logo-hu {
+    font-size: 1.5rem;
+    font-family: 'Lemon-Milk', sans-serif;
+    margin-bottom: 0;
+}
+
+.logo-gram {
+    font-size: 1.5rem;
+    font-family: 'Lemon-Milk', sans-serif;
+    color: #edd5bd;
+}
