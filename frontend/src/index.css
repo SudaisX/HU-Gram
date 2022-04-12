@@ -40,6 +40,27 @@
     padding: 0px;
 }
 
+/* main {
+    min-height: 80vh;
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#root {
+    text-size-adjust: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer {
+    margin-top: auto 0 0 0;
+}
+
 .logo-hu {
     font-size: 1.5rem;
     font-family: 'Lemon-Milk', sans-serif;
