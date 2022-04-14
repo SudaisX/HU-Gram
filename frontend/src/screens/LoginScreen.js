@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
-import Message from '../components/Message';
+// import Message from '../components/Message';
 
 const LoginScreen = ({ setIsLandingPage }) => {
     const [email, setEmail] = useState('');
@@ -20,7 +20,7 @@ const LoginScreen = ({ setIsLandingPage }) => {
 
     return (
         <FormContainer>
-            <h1>Login</h1>
+            <h1>Sign In</h1>
             {/* {message && <Message variant='danger'>{message}</Message>} */}
 
             <Form onSubmit={submitHandler}>

@@ -19,7 +19,7 @@ const LandingScreen = ({ setIsLandingPage }) => {
                     <span className='big-logo-gram'>GRAM</span>
                 </div>
                 <p className='landing-subtext'>For HU Students Only</p>
-                <Link className='cool-btn' to='/home'>
+                <Link className='cool-btn' to='/login'>
                     <span></span>
                     Login Now! <i className='fa-solid fa-arrow-right'></i>
                 </Link>
