@@ -8,7 +8,6 @@ import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import postRoutes from './routes/postRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
-import authRoutes from './routes/authRoutes.js';
 
 // ENV Config
 dotenv.config();
@@ -30,7 +29,6 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/profile', profileRoutes);
-app.use('/api/auth', authRoutes);
 
 const __dirname = path.resolve();
 
