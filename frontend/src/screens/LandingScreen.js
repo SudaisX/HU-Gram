@@ -1,12 +1,20 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const LandingScreen = ({ setIsLandingPage }) => {
+const LandingScreen = () => {
+    const navigate = useNavigate();
+
+    const { token } = useSelector((state) => state.userLogin);
+
     useEffect(() => {
-        setIsLandingPage(true);
+        if (token) {
+            return navigate('/home');
+        }
         // eslint-disable-next-line
-    }, [setIsLandingPage]);
+    }, []);
 
     return (
         <>

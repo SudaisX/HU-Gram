@@ -10,9 +10,7 @@ const rootReducer = combineReducers({
     loadedUser: loadUserReducer,
 });
 
-const tokenFromStorage = localStorage.getItem('token')
-    ? JSON.parse(localStorage.getItem('token'))
-    : null;
+const tokenFromStorage = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 
 const initialState = { userLogin: { token: tokenFromStorage } };
 

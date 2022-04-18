@@ -79,7 +79,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
     try {
-        const user = await User.findById(req.user._id);
+        const user = await User.findById(req.user._id).select('-password');
         res.json(user);
     } catch (error) {
         console.error(error.message);

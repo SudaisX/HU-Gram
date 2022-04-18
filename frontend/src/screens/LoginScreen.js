@@ -1,27 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { login } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
-// import Message from '../components/Message';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
-const LoginScreen = ({ setIsLandingPage }) => {
+const LoginScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [message, setMessage] = useState(null);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { loading, error, token } = userLogin;
+
+    useEffect(() => {
+        if (token) {
+            return navigate('/home');
+        }
+        // eslint-disable-next-line
+    }, [token]);
 
     const submitHandler = (e) => {
         e.preventDefault();
+        dispatch(login(email, password));
     };
-
-    useEffect(() => {
-        setIsLandingPage(false);
-        // eslint-disable-next-line
-    }, [setIsLandingPage]);
 
     return (
         <FormContainer>
             <h1>Sign In</h1>
-            {/* {message && <Message variant='danger'>{message}</Message>} */}
+            {error && error.map((err) => <Message variant='danger'>{err.msg}</Message>)}
+            {loading && <Loader />}
 
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='email' className='mt-3'>
