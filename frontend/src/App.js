@@ -9,7 +9,7 @@ import RegisterScreen from './screens/RegisterScreen';
 
 function App() {
     const [isLandingPage, setIsLandingPage] = useState(false); // temporary -will be removed with user instance
-
+    //testing
     return (
         <>
             {isLandingPage ? '' : <Header />}

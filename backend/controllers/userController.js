@@ -78,8 +78,13 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @route   GET api/users/me
 // @access  Private
 const getUser = asyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id);
-    res.json(user);
+    try {
+        const user = await User.findById(req.user._id);
+        res.json(user);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
 });
 
 // @desc    Get All Users
