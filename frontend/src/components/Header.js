@@ -26,10 +26,15 @@ const Header = ({ userInfo }) => {
                         <LinkContainer to='/home'>
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-
-                        <Nav.Link href='#link'>Events</Nav.Link>
-                        <Nav.Link href='#link'>Projects</Nav.Link>
-                        <Nav.Link href='#link'>FAQs</Nav.Link>
+                        <LinkContainer to='/events'>
+                            <Nav.Link>Events</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/projects'>
+                            <Nav.Link>Projects</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/faqs'>
+                            <Nav.Link>FAQs</Nav.Link>
+                        </LinkContainer>
                     </Nav>
 
                     <Nav style={{ marginLeft: 'auto' }}>
@@ -37,12 +42,19 @@ const Header = ({ userInfo }) => {
                             <i className='fa-solid fa-users'></i> Fellows
                         </Nav.Link>
                         <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
-                            <NavDropdown.Item href='#action/3.1'>Profile</NavDropdown.Item>
-                            <NavDropdown.Item href='#action/3.1'>Settings</NavDropdown.Item>
+                            <LinkContainer to='/profile'>
+                                <NavDropdown.Item>Profile</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to='/dashboard'>
+                                <NavDropdown.Item>Dashboard</NavDropdown.Item>
+                            </LinkContainer>
+
                             {userInfo.isAdmin ? (
                                 <>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href='#action/3.2'>Users</NavDropdown.Item>
+                                    <LinkContainer to='/users'>
+                                        <NavDropdown.Item>Users</NavDropdown.Item>
+                                    </LinkContainer>
                                 </>
                             ) : (
                                 ''

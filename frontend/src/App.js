@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import HomeFeedScreen from './screens/HomeFeedScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import DashboardScreen from './screens/DashboardScreen';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -32,6 +33,7 @@ function App() {
                 <Route path='/home' element={<HomeFeedScreen />} />
                 <Route path='/login' element={<LoginScreen />} />
                 <Route path='/register' element={<RegisterScreen />} />
+                <Route path='/dashboard' element={<DashboardScreen />} />
             </Routes>
             {userInfo ? <Footer /> : ''}
         </>
