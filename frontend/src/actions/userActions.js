@@ -10,6 +10,7 @@ import {
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
+    UNLOAD_USER,
 } from '../constants/userConstants';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -117,4 +118,5 @@ export const register = (name, email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
     localStorage.removeItem('token');
     dispatch({ type: USER_LOGOUT });
+    dispatch({ type: UNLOAD_USER });
 };

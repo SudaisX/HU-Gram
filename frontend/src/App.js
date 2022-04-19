@@ -17,16 +17,16 @@ if (localStorage.token) {
 function App() {
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(loadUser());
-    }, []);
-
     const user = useSelector((state) => state.loadedUser);
     const { userInfo } = user;
 
+    useEffect(() => {
+        dispatch(loadUser());
+    }, [dispatch]);
+
     return (
         <>
-            {userInfo ? <Header /> : ''}
+            {userInfo ? <Header userInfo={userInfo} /> : ''}
             <Routes>
                 <Route path='/' element={<LandingScreen />} />
                 <Route path='/home' element={<HomeFeedScreen />} />
