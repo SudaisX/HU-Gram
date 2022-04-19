@@ -38,9 +38,12 @@ const Header = ({ userInfo }) => {
                     </Nav>
 
                     <Nav style={{ marginLeft: 'auto' }}>
-                        <Nav.Link href='#home'>
-                            <i className='fa-solid fa-users'></i> Fellows
-                        </Nav.Link>
+                        <LinkContainer to='/fellows'>
+                            <Nav.Link>
+                                <i className='fa-solid fa-users'></i> Fellows
+                            </Nav.Link>
+                        </LinkContainer>
+
                         <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
                             <LinkContainer to='/profile'>
                                 <NavDropdown.Item>Profile</NavDropdown.Item>

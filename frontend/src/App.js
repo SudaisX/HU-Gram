@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/userActions';
+import PrivateRoute from './components/PrivateRoute';
 import LandingScreen from './screens/LandingScreen';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -30,10 +31,10 @@ function App() {
             {userInfo ? <Header userInfo={userInfo} /> : ''}
             <Routes>
                 <Route path='/' element={<LandingScreen />} />
-                <Route path='/home' element={<HomeFeedScreen />} />
                 <Route path='/login' element={<LoginScreen />} />
                 <Route path='/register' element={<RegisterScreen />} />
-                <Route path='/dashboard' element={<DashboardScreen />} />
+                <Route path='/home' element={<PrivateRoute component={HomeFeedScreen} />} />
+                <Route path='/dashboard' element={<PrivateRoute component={DashboardScreen} />} />
             </Routes>
             {userInfo ? <Footer /> : ''}
         </>
