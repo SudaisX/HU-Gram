@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { UNLOAD_PROFILE } from '../constants/profileConstants';
 import {
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
@@ -119,4 +120,5 @@ export const logout = () => (dispatch) => {
     localStorage.removeItem('token');
     dispatch({ type: USER_LOGOUT });
     dispatch({ type: UNLOAD_USER });
+    dispatch({ type: UNLOAD_PROFILE });
 };

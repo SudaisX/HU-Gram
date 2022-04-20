@@ -2,6 +2,7 @@ import {
     GET_PROFILE_REQUEST,
     GET_PROFILE_SUCCESS,
     GET_PROFILE_FAIL,
+    UNLOAD_PROFILE,
 } from '../constants/profileConstants';
 
 export const getProfileReducer = (state = {}, action) => {
@@ -14,6 +15,9 @@ export const getProfileReducer = (state = {}, action) => {
 
         case GET_PROFILE_FAIL:
             return { loading: false, error: action.payload };
+
+        case UNLOAD_PROFILE:
+            return {};
 
         default:
             return state;
