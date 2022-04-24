@@ -16,6 +16,7 @@ import EditProfileScreen from './screens/EditProfileScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import AddExperienceScreen from './screens/AddExperienceScreen';
 import AddEducationScreen from './screens/AddEducationScreen';
+import ProfilesScreen from './screens/ProfilesScreen';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -41,6 +42,7 @@ function App() {
                 <Route path='/home' element={<PrivateRoute component={HomeFeedScreen} />} />
                 <Route path='/dashboard' element={<PrivateRoute component={DashboardScreen} />} />
                 <Route path='/profile' element={<PrivateRoute component={ProfileScreen} />} />
+                <Route path='/fellows' element={<PrivateRoute component={ProfilesScreen} />} />
                 <Route
                     path='/profile/create'
                     element={<PrivateRoute component={CreateProfileScreen} />}
@@ -57,6 +59,7 @@ function App() {
                     path='/profile/add-education'
                     element={<PrivateRoute component={AddEducationScreen} />}
                 />
+                <Route path='/profile/:id' element={<PrivateRoute component={ProfileScreen} />} />
             </Routes>
             {userInfo ? <Footer /> : ''}
         </>

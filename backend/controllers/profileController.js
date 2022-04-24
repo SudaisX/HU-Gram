@@ -34,6 +34,7 @@ const updateProfile = asyncHandler(async (req, res) => {
     }
 
     const {
+        pfp,
         major,
         minor,
         batch,
@@ -62,6 +63,7 @@ const updateProfile = asyncHandler(async (req, res) => {
     if (website) profileFields.website = website;
     if (birthday) profileFields.birthday = birthday;
     if (bio) profileFields.bio = bio;
+    if (pfp) profileFields.pfp = pfp;
 
     // Handle fields with comma seperated entries
     if (interests) {

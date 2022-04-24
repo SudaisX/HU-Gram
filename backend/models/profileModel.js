@@ -7,6 +7,7 @@ const profileSchema = new mongoose.Schema(
             ref: 'User',
         },
         birthday: { type: Date },
+        pfp: { type: String, default: '/images/pfp.png' },
         major: { type: String },
         minor: { type: String },
         batch: { type: String },

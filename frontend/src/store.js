@@ -7,6 +7,8 @@ import {
     createUpdateProfileReducer,
     deleteEducationReducer,
     deleteExperienceReducer,
+    getProfilesReducer,
+    getProfileByIdReducer,
 } from './reducers/profileReducers';
 
 const rootReducer = combineReducers({
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
     userRegister: userRegisterReducer,
     loadedUser: loadUserReducer,
     userProfile: getProfileReducer,
+    allProfiles: getProfilesReducer,
+    profileById: getProfileByIdReducer,
     profileUpdate: createUpdateProfileReducer,
     deleteEducation: deleteEducationReducer,
     deleteExperience: deleteExperienceReducer,

@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import { validationResult } from 'express-validator';
-import gravatar from 'gravatar';
+// import gravatar from 'gravatar';
 import generateToken from '../utils/generateToken.js';
 import User from '../models/userModel.js';
 import Profile from '../models/profileModel.js';
@@ -23,11 +23,14 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     // Get User Gravatar // Replace it with a default kabbu image
-    const avatar = gravatar.url(email, {
-        s: '200',
-        r: 'pg',
-        d: 'mm',
-    });
+    // const avatar = gravatar.url(email, {
+    //     s: '200',
+    //     r: 'pg',
+    //     d: 'mm',
+    // });
+
+    // Default PFP
+    const avatar = '/images/pfp.png';
 
     const user = await User.create({
         name,
