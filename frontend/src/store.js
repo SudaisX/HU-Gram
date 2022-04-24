@@ -2,13 +2,14 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { loadUserReducer, userLoginReducer, userRegisterReducer } from './reducers/userReducers';
-import { getProfileReducer } from './reducers/profileReducers';
+import { getProfileReducer, createUpdateProfileReducer } from './reducers/profileReducers';
 
 const rootReducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     loadedUser: loadUserReducer,
     userProfile: getProfileReducer,
+    profileUpdate: createUpdateProfileReducer,
 });
 
 const tokenFromStorage = localStorage.getItem('token') ? localStorage.getItem('token') : null;

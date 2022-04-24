@@ -11,6 +11,8 @@ import HomeFeedScreen from './screens/HomeFeedScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import DashboardScreen from './screens/DashboardScreen';
+import CreateProfileScreen from './screens/CreateProfileScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -35,6 +37,11 @@ function App() {
                 <Route path='/register' element={<RegisterScreen />} />
                 <Route path='/home' element={<PrivateRoute component={HomeFeedScreen} />} />
                 <Route path='/dashboard' element={<PrivateRoute component={DashboardScreen} />} />
+                <Route path='/profile' element={<PrivateRoute component={ProfileScreen} />} />
+                <Route
+                    path='/profile/create'
+                    element={<PrivateRoute component={CreateProfileScreen} />}
+                />
             </Routes>
             {userInfo ? <Footer /> : ''}
         </>

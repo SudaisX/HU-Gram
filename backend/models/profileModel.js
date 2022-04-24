@@ -10,7 +10,6 @@ const profileSchema = new mongoose.Schema(
         major: { type: String },
         minor: { type: String },
         batch: { type: String },
-        location: { type: String },
         skills: { type: [String] },
         hobbies: { type: [String] },
         interests: { type: [String] },

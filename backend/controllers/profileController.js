@@ -71,7 +71,8 @@ const updateProfile = asyncHandler(async (req, res) => {
         profileFields.skills = skills.split(',').map((skill) => skill.trim());
     }
     if (clubs) {
-        profileFields.clubs = clubs.split(',').map((skill) => skill.trim());
+        // profileFields.clubs = clubs.split(',').map((skill) => skill.trim());
+        profileFields.clubs = clubs;
     }
     if (hobbies) {
         profileFields.hobbies = hobbies.split(',').map((skill) => skill.trim());
@@ -189,9 +190,6 @@ const deleteExperience = asyncHandler(async (req, res) => {
         // Get remove index
         const removeIndex = profile.experience.map((exp) => exp.id).indexOf(req.params.expId);
 
-        console.log(profile.experience);
-        console.log(removeIndex);
-
         profile.experience.splice(removeIndex, 1);
 
         await profile.save();
@@ -247,9 +245,6 @@ const deleteEducation = asyncHandler(async (req, res) => {
 
         // Get remove index
         const removeIndex = profile.education.map((exp) => exp.id).indexOf(req.params.eduId);
-
-        console.log(profile.education);
-        console.log(removeIndex);
 
         profile.education.splice(removeIndex, 1);
 
