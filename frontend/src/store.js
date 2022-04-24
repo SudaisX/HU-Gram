@@ -2,7 +2,12 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { loadUserReducer, userLoginReducer, userRegisterReducer } from './reducers/userReducers';
-import { getProfileReducer, createUpdateProfileReducer } from './reducers/profileReducers';
+import {
+    getProfileReducer,
+    createUpdateProfileReducer,
+    deleteEducationReducer,
+    deleteExperienceReducer,
+} from './reducers/profileReducers';
 
 const rootReducer = combineReducers({
     userLogin: userLoginReducer,
@@ -10,6 +15,8 @@ const rootReducer = combineReducers({
     loadedUser: loadUserReducer,
     userProfile: getProfileReducer,
     profileUpdate: createUpdateProfileReducer,
+    deleteEducation: deleteEducationReducer,
+    deleteExperience: deleteExperienceReducer,
 });
 
 const tokenFromStorage = localStorage.getItem('token') ? localStorage.getItem('token') : null;

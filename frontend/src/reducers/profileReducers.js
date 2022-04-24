@@ -6,6 +6,12 @@ import {
     CREATE_UPDATE_PROFILE_REQUEST,
     CREATE_UPDATE_PROFILE_SUCCESS,
     CREATE_UPDATE_PROFILE_FAIL,
+    DELETE_EDUCATION_REQUEST,
+    DELETE_EDUCATION_SUCCESS,
+    DELETE_EDUCATION_FAIL,
+    DELETE_EXPERIENCE_REQUEST,
+    DELETE_EXPERIENCE_SUCCESS,
+    DELETE_EXPERIENCE_FAIL,
 } from '../constants/profileConstants';
 
 export const getProfileReducer = (state = {}, action) => {
@@ -36,6 +42,38 @@ export const createUpdateProfileReducer = (state = {}, action) => {
             return { loading: false, profile: action.payload, success: true };
 
         case CREATE_UPDATE_PROFILE_FAIL:
+            return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+};
+
+export const deleteExperienceReducer = (state = {}, action) => {
+    switch (action.type) {
+        case DELETE_EXPERIENCE_REQUEST:
+            return { loading: true };
+
+        case DELETE_EXPERIENCE_SUCCESS:
+            return { loading: false, profile: action.payload, success: true };
+
+        case DELETE_EXPERIENCE_FAIL:
+            return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+};
+
+export const deleteEducationReducer = (state = {}, action) => {
+    switch (action.type) {
+        case DELETE_EDUCATION_REQUEST:
+            return { loading: true };
+
+        case DELETE_EDUCATION_SUCCESS:
+            return { loading: false, profile: action.payload, success: true };
+
+        case DELETE_EDUCATION_FAIL:
             return { loading: false, error: action.payload };
 
         default:

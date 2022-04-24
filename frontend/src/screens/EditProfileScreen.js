@@ -64,7 +64,8 @@ const EditProfileScreen = () => {
 
     useEffect(() => {
         if (userProfile.profile) {
-            if (userProfile.profile.birthday) setBirthday(userProfile.profile.birthday);
+            if (userProfile.profile.birthday)
+                setBirthday(userProfile.profile.birthday.split('T')[0]);
             if (userProfile.profile.major) setMajor(userProfile.profile.major);
             if (userProfile.profile.minor) setMinor(userProfile.profile.minor);
             if (userProfile.profile.skills) setSkills(userProfile.profile.skills.join(', '));
