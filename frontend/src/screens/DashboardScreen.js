@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container } from 'react-bootstrap';
-import { NavLink } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getCurrentProfile } from '../actions/profileActions';
-import FormContainer from '../components/FormContainer';
+import DashboardButtons from '../components/DashboardButtons';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 const DashboardScreen = () => {
-    const navigate = useNavigate();
     const [name, setName] = useState('');
 
     const dispatch = useDispatch();
@@ -36,19 +34,22 @@ const DashboardScreen = () => {
                 <p style={{ textAlign: 'center' }}>
                     <i className='fas fa-user'></i> Welcome {name}
                 </p>
+
                 {!profile ? (
                     <>
                         <p style={{ textAlign: 'center', marginTop: '100px' }}>
                             Hello, you have not yet created a profile, please make one :(
                         </p>
                         <div style={{ textAlign: 'center' }}>
-                            <Button onClick={() => navigate('/profile/create')} variant='primary'>
+                            <Link className='btn btn-primary' to='/profile/create'>
                                 Create Profile
-                            </Button>
+                            </Link>
                         </div>
                     </>
                 ) : (
-                    <>has a profile</>
+                    <>
+                        <DashboardButtons />
+                    </>
                 )}
             </Container>
         </>

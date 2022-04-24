@@ -167,7 +167,10 @@ const updateExperience = asyncHandler(async (req, res) => {
     };
 
     try {
-        const profile = await Profile.findOne({ user: req.user.id });
+        const profile = await Profile.findOne({ user: req.user.id }).populate('user', [
+            'name',
+            'avatar',
+        ]);
 
         profile.experience.unshift(newExperience);
 
@@ -185,7 +188,10 @@ const updateExperience = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteExperience = asyncHandler(async (req, res) => {
     try {
-        const profile = await Profile.findOne({ user: req.user.id });
+        const profile = await Profile.findOne({ user: req.user.id }).populate('user', [
+            'name',
+            'avatar',
+        ]);
 
         // Get remove index
         const removeIndex = profile.experience.map((exp) => exp.id).indexOf(req.params.expId);
@@ -223,7 +229,10 @@ const updateEducation = asyncHandler(async (req, res) => {
     };
 
     try {
-        const profile = await Profile.findOne({ user: req.user.id });
+        const profile = await Profile.findOne({ user: req.user.id }).populate('user', [
+            'name',
+            'avatar',
+        ]);
 
         profile.education.unshift(newEducation);
 
@@ -241,7 +250,10 @@ const updateEducation = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteEducation = asyncHandler(async (req, res) => {
     try {
-        const profile = await Profile.findOne({ user: req.user.id });
+        const profile = await Profile.findOne({ user: req.user.id }).populate('user', [
+            'name',
+            'avatar',
+        ]);
 
         // Get remove index
         const removeIndex = profile.education.map((exp) => exp.id).indexOf(req.params.eduId);

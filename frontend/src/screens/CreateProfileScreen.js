@@ -7,7 +7,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getCurrentProfile, createUpdateProfile } from '../actions/profileActions';
 
-const LoginScreen = () => {
+const CreateProfileScreen = () => {
     const [birthday, setBirthday] = useState('');
     const [major, setMajor] = useState('Computer Science');
     const [minor, setMinor] = useState('');
@@ -56,7 +56,7 @@ const LoginScreen = () => {
     const { loadingProfile } = userProfile;
 
     const profileUpdate = useSelector((state) => state.profileUpdate);
-    const { loading, error, success } = profileUpdate;
+    const { loading, error } = profileUpdate;
 
     const clubsOnChangeHandler = (position) => {
         const updatedClubsState = clubs.map((item, index) => (index === position ? !item : item));
@@ -171,7 +171,7 @@ const LoginScreen = () => {
                 <Form.Group controlId='date' className='mt-3'>
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control
-                        type='datetime-local'
+                        type='date'
                         value={birthday}
                         onChange={(e) => setBirthday(e.target.value)}></Form.Control>
                 </Form.Group>
@@ -322,4 +322,4 @@ const LoginScreen = () => {
     );
 };
 
-export default LoginScreen;
+export default CreateProfileScreen;

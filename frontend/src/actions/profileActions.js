@@ -29,39 +29,99 @@ export const getCurrentProfile = () => async (dispatch) => {
     }
 };
 
-export const createUpdateProfile =
-    (profileData, edit = false) =>
-    async (dispatch) => {
-        try {
-            dispatch({
-                type: CREATE_UPDATE_PROFILE_REQUEST,
-            });
+export const createUpdateProfile = (profileData) => async (dispatch) => {
+    try {
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_REQUEST,
+        });
 
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
 
-            const { data } = await axios.post('/api/profile', profileData, config);
+        const { data } = await axios.post('/api/profile', profileData, config);
 
-            dispatch({
-                type: CREATE_UPDATE_PROFILE_SUCCESS,
-                payload: data,
-            });
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_SUCCESS,
+            payload: data,
+        });
 
-            dispatch({
-                type: GET_PROFILE_SUCCESS,
-                payload: data,
-            });
-        } catch (error) {
-            dispatch({
-                type: CREATE_UPDATE_PROFILE_FAIL,
-                payload: error.response.data.errors,
-                // payload:
-                //     error.response && error.response.data.msg
-                //         ? error.response.data.msg
-                //         : error.message,
-            });
-        }
-    };
+        dispatch({
+            type: GET_PROFILE_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_FAIL,
+            payload: error.response.data.errors,
+            // payload:
+            //     error.response && error.response.data.msg
+            //         ? error.response.data.msg
+            //         : error.message,
+        });
+    }
+};
+
+export const addExperience = (experienceData) => async (dispatch) => {
+    try {
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_REQUEST,
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        const { data } = await axios.put('/api/profile/experience', experienceData, config);
+
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_SUCCESS,
+            payload: data,
+        });
+
+        dispatch({
+            type: GET_PROFILE_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_FAIL,
+            payload: error.response.data.errors,
+        });
+    }
+};
+
+export const addEducation = (educationData) => async (dispatch) => {
+    try {
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_REQUEST,
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        const { data } = await axios.put('/api/profile/education', educationData, config);
+
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_SUCCESS,
+            payload: data,
+        });
+
+        dispatch({
+            type: GET_PROFILE_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: CREATE_UPDATE_PROFILE_FAIL,
+            payload: error.response.data.errors,
+        });
+    }
+};

@@ -197,3 +197,22 @@ body {
 .hyperlink:hover {
     opacity: 0.8;
 }
+
+.dash-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash-buttons a {
+    margin-right: 20px;
+}
+
+.btn-vlight {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
