@@ -54,8 +54,9 @@ const PostScreen = () => {
                                     <Col>
                                         <Row style={{ minHeight: '74px' }}>
                                             <Card.Text>{post.text}</Card.Text>
+                                            {post.image && <Card.Img src={post.image} />}
                                         </Row>
-                                        <Row>
+                                        <Row className='mt-1'>
                                             <Col>
                                                 <p className='post-date'>
                                                     {post.likes.length} likes,{' '}

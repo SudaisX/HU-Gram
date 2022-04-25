@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +9,8 @@ import Loader from './Loader';
 
 const PostForm = () => {
     const [text, setText] = useState('');
+    const [image, setImage] = useState('');
+    const [uploading, setUploading] = useState(false);
     const dispatch = useDispatch();
 
     const userProfile = useSelector((state) => state.userProfile);
@@ -20,6 +23,30 @@ const PostForm = () => {
     }, []);
 
     const submitHandler = () => {};
+
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0];
+        const formData = new FormData();
+
+        formData.append('image', file);
+        setUploading(true);
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            };
+
+            const { data } = await axios.post('/api/upload', formData, config);
+
+            setImage(data);
+            setUploading(false);
+        } catch (error) {
+            console.error(error);
+            setUploading(false);
+        }
+    };
 
     if (loading !== false) return <Loader />;
 
@@ -66,7 +93,16 @@ const PostForm = () => {
                                     <div
                                         className='mt-3'
                                         style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                        <Button onClick={() => dispatch(createPost({ text }))}>
+                                        <Form.Control
+                                            type='file'
+                                            label='Choose File'
+                                            custom
+                                            onChange={uploadFileHandler}
+                                        />
+                                        {uploading && <Loader />}
+
+                                        <Button
+                                            onClick={() => dispatch(createPost({ text, image }))}>
                                             Post
                                         </Button>
                                     </div>
