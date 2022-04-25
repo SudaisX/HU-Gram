@@ -30,7 +30,7 @@ const PostScreen = () => {
                 <Loader />
             ) : (
                 <>
-                    <Container className='mt-3'>
+                    <Container className='mt-3 mb-5'>
                         <Link className='btn btn-light my-3' to='/home'>
                             {'< Back to Posts'}
                         </Link>

@@ -20,7 +20,7 @@ const HomeFeedScreen = () => {
                 <Loader />
             ) : (
                 <Container
-                    className='mt-3'
+                    className='mt-3 mb-5'
                     style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                     <h1 className='mt-3' style={{ textAlign: 'center' }}>
                         Posts

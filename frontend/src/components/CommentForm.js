@@ -20,10 +20,12 @@ const CommentForm = ({ postId }) => {
 
     const submitHandler = () => {};
 
+    if (loading !== false) return <Loader />;
+
     return (
         <>
-            {loading !== false ? (
-                <Loader />
+            {!profile ? (
+                ''
             ) : (
                 <Card className='mt-5'>
                     <Card.Body>
