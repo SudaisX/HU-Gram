@@ -9,6 +9,7 @@ import { getCurrentProfile, createUpdateProfile } from '../actions/profileAction
 
 const CreateProfileScreen = () => {
     const [birthday, setBirthday] = useState('');
+    const [pfp, setPfp] = useState('');
     const [major, setMajor] = useState('Computer Science');
     const [minor, setMinor] = useState('');
     const [batch, setBatch] = useState('2024');
@@ -82,6 +83,7 @@ const CreateProfileScreen = () => {
         // setClubs(finalClubs);
 
         const profileData = {
+            pfp,
             birthday,
             major,
             minor,
@@ -123,6 +125,16 @@ const CreateProfileScreen = () => {
 
             <Form onSubmit={submitHandler}>
                 <h2>General</h2>
+
+                <Form.Group controlId='pfp' className='mt-3'>
+                    <Form.Label>Profile Picture</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Type in a link for your Profile Picture'
+                        value={pfp}
+                        onChange={(e) => setPfp(e.target.value)}></Form.Control>
+                </Form.Group>
+
                 <Form.Group controlId='batch' className='mt-3'>
                     <Form.Label>Class of</Form.Label>
                     <Form.Select value={batch} onChange={(e) => setBatch(e.target.value)}>

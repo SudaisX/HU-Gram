@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getCurrentProfile } from '../actions/profileActions';
+import { Link, useParams } from 'react-router-dom';
+import { getProfileById } from '../actions/profileActions';
 import Loader from '../components/Loader';
 import ProfileAbout from '../components/ProfileAbout';
 import ProfileEducation from '../components/ProfileEducation';
 import ProfileExperience from '../components/ProfileExperience';
 import ProfileTop from '../components/ProfileTop';
 
-const ProfileScreen = () => {
+const FellowProfileScreen = () => {
+    const params = useParams();
     const dispatch = useDispatch();
-    const { loading, profile } = useSelector((state) => state.userProfile);
+    const { userInfo } = useSelector((state) => state.loadedUser);
+    const { loading, profile } = useSelector((state) => state.profileById);
 
     useEffect(() => {
-        if (!profile) {
-            dispatch(getCurrentProfile());
-        }
-    }, [dispatch, profile]);
+        dispatch(getProfileById(params.id));
+    }, [dispatch, params.id]);
 
     return (
         <>
@@ -25,14 +25,9 @@ const ProfileScreen = () => {
                 <Loader />
             ) : (
                 <Container style={{ marginTop: '0' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Link className='btn btn-light my-3' to='/fellows'>
-                            {'< Back to Profiles'}
-                        </Link>
-                        <Link className='btn btn-vlight my-3' to='/profile/edit'>
-                            <i className='fas fa-user'></i> Edit Profile
-                        </Link>
-                    </div>
+                    <Link className='btn btn-light my-3' to='/fellows'>
+                        {'< Go Back'}
+                    </Link>
 
                     <div className='profile-grid my-1'>
                         <ProfileTop profile={profile} />
@@ -52,7 +47,7 @@ const ProfileScreen = () => {
                                     ))}
                                 </>
                             ) : (
-                                <h4 style={{ textAlign: 'center' }}>No experience credentials</h4>
+                                <h4>No experience credentials</h4>
                             )}
                         </div>
 
@@ -80,4 +75,4 @@ const ProfileScreen = () => {
     );
 };
 
-export default ProfileScreen;
+export default FellowProfileScreen;

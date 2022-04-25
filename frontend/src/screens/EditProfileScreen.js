@@ -68,6 +68,7 @@ const EditProfileScreen = () => {
             if (userProfile.profile.birthday)
                 setBirthday(userProfile.profile.birthday.split('T')[0]);
             if (userProfile.profile.pfp) setPfp(userProfile.profile.pfp);
+            if (userProfile.profile.batch) setBatch(userProfile.profile.batch);
             if (userProfile.profile.major) setMajor(userProfile.profile.major);
             if (userProfile.profile.minor) setMinor(userProfile.profile.minor);
             if (userProfile.profile.skills) setSkills(userProfile.profile.skills.join(', '));
@@ -82,7 +83,6 @@ const EditProfileScreen = () => {
                     setYoutube(userProfile.profile.social.youtube);
                 if (userProfile.profile.social.facebook)
                     setFacebook(userProfile.profile.social.facebook);
-                console.log(facebook);
                 if (userProfile.profile.social.twitter)
                     setTwitter(userProfile.profile.social.twitter);
                 if (userProfile.profile.social.linkedin)
@@ -99,8 +99,6 @@ const EditProfileScreen = () => {
                     }
                 }
             }
-
-            console.log(userProfile.profile);
         } else {
             dispatch(getCurrentProfile());
         }
@@ -137,8 +135,6 @@ const EditProfileScreen = () => {
             github,
         };
         dispatch(createUpdateProfile(profileData));
-        console.log(profileData);
-        console.log(error);
         // dispatch(login(email, password));
     };
 
@@ -163,7 +159,7 @@ const EditProfileScreen = () => {
 
                     <Form onSubmit={submitHandler}>
                         <h2>General</h2>
-                        <Form.Group controlId='pfp' className='mt-3 mb-3'>
+                        <Form.Group controlId='pfp' className='mt-3'>
                             <Form.Label>Profile Picture</Form.Label>
                             <Form.Control
                                 type='text'
