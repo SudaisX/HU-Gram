@@ -3,7 +3,7 @@ const localDbURI = 'mongodb://localhost:27017/hugram';
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(localDbURI, {
+        const conn = await mongoose.connect(process.env.MONGO_URI, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
         });
