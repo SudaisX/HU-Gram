@@ -19,6 +19,7 @@ import AddEducationScreen from './screens/AddEducationScreen';
 import ProfilesScreen from './screens/ProfilesScreen';
 import FellowProfileScreen from './screens/FellowProfileScreen';
 import PostScreen from './screens/PostScreen';
+import { NotFoundScreen } from './screens/NotFoundScreen';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -66,6 +67,7 @@ function App() {
                     element={<PrivateRoute component={FellowProfileScreen} />}
                 />
                 <Route path='/post/:id' element={<PrivateRoute component={PostScreen} />} />
+                <Route path='*' element={<NotFoundScreen />} />
             </Routes>
             {userInfo ? <Footer /> : ''}
         </>
