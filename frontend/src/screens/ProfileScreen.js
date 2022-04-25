@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getCurrentProfile } from '../actions/profileActions';
 import Loader from '../components/Loader';
 import ProfileAbout from '../components/ProfileAbout';
@@ -10,6 +10,7 @@ import ProfileExperience from '../components/ProfileExperience';
 import ProfileTop from '../components/ProfileTop';
 
 const ProfileScreen = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { loading, profile } = useSelector((state) => state.userProfile);
 
@@ -19,10 +20,12 @@ const ProfileScreen = () => {
         }
     }, [dispatch, profile]);
 
+    if (loading) return <Loader />;
+
     return (
         <>
-            {loading !== false ? (
-                <Loader />
+            {!profile ? (
+                navigate('/dashboard')
             ) : (
                 <Container style={{ marginTop: '0' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>

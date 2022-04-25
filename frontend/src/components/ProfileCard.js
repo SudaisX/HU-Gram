@@ -7,9 +7,7 @@ const ProfileCard = ({ profile }) => {
 
     return (
         <>
-            <Card
-                className='my-3 rounder round-card'
-                style={{ textAlign: 'center', width: '18rem' }}>
+            <Card style={{ textAlign: 'center', width: '18rem' }}>
                 <Link to={`/profile/${user._id}`}>
                     <Card.Img
                         variant='top'

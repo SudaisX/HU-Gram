@@ -24,7 +24,7 @@ const ProfilesScreen = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <Container className='mt-3'>
+                <Container className='mt-3 mb-5'>
                     <h1 className='mt-3' style={{ textAlign: 'center' }}>
                         Fellows
                     </h1>
