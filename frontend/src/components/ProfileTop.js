@@ -26,15 +26,52 @@ const ProfileTop = ({
                         <i className='fas fa-globe fa-2x' />
                     </a>
                 ) : null}
-                {social
-                    ? Object.entries(social)
-                          .filter(([_, value]) => value)
-                          .map(([key, value]) => (
-                              <a key={key} href={value} target='_blank' rel='noopener noreferrer'>
-                                  <i className={`fab fa-${key} fa-2x`}></i>
-                              </a>
-                          ))
-                    : null}
+
+                {social && social.twitter && (
+                    <a
+                        href={`https://twitter.com/${social.twitter}`}
+                        target='_blank'
+                        rel='noopener noreferrer'>
+                        <i class='fab fa-twitter fa-2x' />
+                    </a>
+                )}
+                {social && social.facebook && (
+                    <a
+                        href={`https://www.facebook.com/${social.facebook}`}
+                        target='_blank'
+                        rel='noopener noreferrer'>
+                        <i class='fab fa-facebook fa-2x' />
+                    </a>
+                )}
+                {social && social.linkedin && (
+                    <a
+                        href={`https://www.linkedin.com/in/${social.linkedin}`}
+                        target='_blank'
+                        rel='noopener noreferrer'>
+                        <i class='fab fa-linkedin fa-2x' />
+                    </a>
+                )}
+                {social && social.youtube && (
+                    <a href={`${social.youtube}`} target='_blank' rel='noopener noreferrer'>
+                        <i class='fab fa-youtube fa-2x' />
+                    </a>
+                )}
+                {social && social.instagram && (
+                    <a
+                        href={`https://www.instagram.com/${social.instagram}`}
+                        target='_blank'
+                        rel='noopener noreferrer'>
+                        <i class='fab fa-instagram fa-2x' />
+                    </a>
+                )}
+                {social && social.github && (
+                    <a
+                        href={`https://www.github.com/${social.github}`}
+                        target='_blank'
+                        rel='noopener noreferrer'>
+                        <i class='fab fa-github fa-2x' />
+                    </a>
+                )}
             </div>
         </div>
     );

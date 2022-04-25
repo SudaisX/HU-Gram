@@ -7,7 +7,7 @@ const ProfileCard = ({ profile }) => {
 
     return (
         <>
-            <Card style={{ textAlign: 'center', width: '18rem' }}>
+            <Card style={{ textAlign: 'center', width: '18rem' }} className='mb-3'>
                 <Link to={`/profile/${user._id}`}>
                     <Card.Img
                         variant='top'
