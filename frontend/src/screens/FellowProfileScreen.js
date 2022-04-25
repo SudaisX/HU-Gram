@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
@@ -12,7 +12,6 @@ import ProfileTop from '../components/ProfileTop';
 const FellowProfileScreen = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const { userInfo } = useSelector((state) => state.loadedUser);
     const { loading, profile } = useSelector((state) => state.profileById);
 
     useEffect(() => {
