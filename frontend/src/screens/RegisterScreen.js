@@ -24,7 +24,7 @@ const RegisterScreen = () => {
 
     useEffect(() => {
         if (userLogin.token) {
-            return navigate('/home');
+            return navigate('/dashboard');
         }
         // eslint-disable-next-line
     }, [userLogin.token]);

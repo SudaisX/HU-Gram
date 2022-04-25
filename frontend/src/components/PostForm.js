@@ -21,10 +21,12 @@ const PostForm = () => {
 
     const submitHandler = () => {};
 
+    if (loading !== false) return <Loader />;
+
     return (
         <>
-            {loading !== false ? (
-                <Loader />
+            {!profile ? (
+                ''
             ) : (
                 <Card className='mt-5' style={{ width: '80%' }}>
                     <Card.Body>
