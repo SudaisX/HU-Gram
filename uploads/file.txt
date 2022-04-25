@@ -1,0 +1,1 @@
+this folder keeps all the images uploaded in the application

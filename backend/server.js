@@ -8,6 +8,7 @@ import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import postRoutes from './routes/postRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 // ENV Config
 dotenv.config();
@@ -29,8 +30,12 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/api/upload', uploadRoutes);
 
 const __dirname = path.resolve();
+
+// Make static path for file uploads
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 // API Running
 if (process.env.NODE_ENV == 'production') {

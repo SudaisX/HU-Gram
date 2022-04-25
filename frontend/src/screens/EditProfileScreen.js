@@ -6,10 +6,12 @@ import FormContainer from '../components/FormContainer';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getCurrentProfile, createUpdateProfile } from '../actions/profileActions';
+import axios from 'axios';
 
 const EditProfileScreen = () => {
     const [birthday, setBirthday] = useState('');
     const [pfp, setPfp] = useState('');
+    const [uploading, setUploading] = useState('');
     const [major, setMajor] = useState('Computer Science');
     const [minor, setMinor] = useState('');
     const [batch, setBatch] = useState('2024');
@@ -105,6 +107,30 @@ const EditProfileScreen = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userProfile.profile]);
 
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0];
+        const formData = new FormData();
+
+        formData.append('image', file);
+        setUploading(true);
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            };
+
+            const { data } = await axios.post('/api/upload', formData, config);
+
+            setPfp(data);
+            setUploading(false);
+        } catch (error) {
+            console.error(error);
+            setUploading(false);
+        }
+    };
+
     const submitHandler = (e) => {
         e.preventDefault();
         const finalClubs = [];
@@ -160,12 +186,19 @@ const EditProfileScreen = () => {
                     <Form onSubmit={submitHandler}>
                         <h2>General</h2>
                         <Form.Group controlId='pfp' className='mt-3'>
-                            <Form.Label>Profile Picture</Form.Label>
+                            <Form.Label>Profile Picture (jpg, jpeg, png only)</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder='Type in a link for your Profile Picture'
+                                placeholder='Enter a URL for an Image'
                                 value={pfp}
                                 onChange={(e) => setPfp(e.target.value)}></Form.Control>
+                            <Form.Control
+                                type='file'
+                                label='Choose File'
+                                custom
+                                onChange={uploadFileHandler}
+                            />
+                            {uploading && <Loader />}
                         </Form.Group>
 
                         <Form.Group controlId='batch' className='mt-3'>
