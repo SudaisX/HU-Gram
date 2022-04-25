@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import { addLike, deletePost, removeLike } from '../actions/postActions';
 import { Button, Card, Col, Row } from 'react-bootstrap';
-import Loader from './Loader';
 
 const PostItem = ({ post }) => {
     const dispatch = useDispatch();

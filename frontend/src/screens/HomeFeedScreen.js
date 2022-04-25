@@ -29,7 +29,6 @@ const HomeFeedScreen = () => {
                         <i className='fas fa-user'></i> Welcome to the HU Community
                     </p>
 
-                    {/* {PostForm} */}
                     <PostForm />
 
                     {posts.map((post) => (

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createPost } from '../actions/postActions';
+import { addComment } from '../actions/postActions';
 import { getCurrentProfile } from '../actions/profileActions';
 import Loader from './Loader';
 
-const PostForm = () => {
+const CommentForm = ({ postId }) => {
     const [text, setText] = useState('');
     const dispatch = useDispatch();
 
@@ -15,8 +15,6 @@ const PostForm = () => {
 
     useEffect(() => {
         dispatch(getCurrentProfile());
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const submitHandler = () => {};
@@ -26,7 +24,7 @@ const PostForm = () => {
             {loading !== false ? (
                 <Loader />
             ) : (
-                <Card className='mt-5' style={{ width: '80%' }}>
+                <Card className='mt-5'>
                     <Card.Body>
                         <Row>
                             <Col md={2} style={{ textAlign: 'center' }}>
@@ -52,7 +50,7 @@ const PostForm = () => {
                                                 as='textarea'
                                                 rows={2}
                                                 type='text'
-                                                placeholder={`What's on your mind, ${profile.user.name}?`}
+                                                placeholder={`What do you think, ${profile.user.name}?`}
                                                 value={text}
                                                 onChange={(e) =>
                                                     setText(e.target.value)
@@ -64,8 +62,9 @@ const PostForm = () => {
                                     <div
                                         className='mt-3'
                                         style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                        <Button onClick={() => dispatch(createPost({ text }))}>
-                                            Post
+                                        <Button
+                                            onClick={() => dispatch(addComment(postId, { text }))}>
+                                            Comment
                                         </Button>
                                     </div>
                                 </Row>
@@ -78,4 +77,4 @@ const PostForm = () => {
     );
 };
 
-export default PostForm;
+export default CommentForm;

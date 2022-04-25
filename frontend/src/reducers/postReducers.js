@@ -1,4 +1,7 @@
 import {
+    ADD_COMMENT_FAIL,
+    ADD_COMMENT_REQUEST,
+    ADD_COMMENT_SUCCESS,
     ADD_POST_FAIL,
     ADD_POST_REQUEST,
     ADD_POST_SUCCESS,
@@ -12,6 +15,9 @@ import {
     GET_POST_FAIL,
     GET_POST_REQUEST,
     GET_POST_SUCCESS,
+    REMOVE_COMMENT_FAIL,
+    REMOVE_COMMENT_REQUEST,
+    REMOVE_COMMENT_SUCCESS,
     UPDATE_LIKES_FAIL,
     UPDATE_LIKES_REQUEST,
     UPDATE_LIKES_SUCCESS,
@@ -93,6 +99,38 @@ export const createPostReducer = (state = {}, action) => {
             return { loading: false, payload: action.payload };
 
         case ADD_POST_FAIL:
+            return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+};
+
+export const addCommentReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ADD_COMMENT_REQUEST:
+            return { loading: true };
+
+        case ADD_COMMENT_SUCCESS:
+            return { loading: false, comment: action.payload };
+
+        case ADD_COMMENT_FAIL:
+            return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+};
+
+export const deleteCommentReducer = (state = {}, action) => {
+    switch (action.type) {
+        case REMOVE_COMMENT_REQUEST:
+            return { loading: true };
+
+        case REMOVE_COMMENT_SUCCESS:
+            return { loading: false, comment: action.payload };
+
+        case REMOVE_COMMENT_FAIL:
             return { loading: false, error: action.payload };
 
         default:

@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+    ADD_COMMENT_FAIL,
+    ADD_COMMENT_REQUEST,
+    ADD_COMMENT_SUCCESS,
     ADD_POST_FAIL,
     ADD_POST_REQUEST,
     ADD_POST_SUCCESS,
@@ -12,6 +15,9 @@ import {
     GET_POST_FAIL,
     GET_POST_REQUEST,
     GET_POST_SUCCESS,
+    REMOVE_COMMENT_FAIL,
+    REMOVE_COMMENT_REQUEST,
+    REMOVE_COMMENT_SUCCESS,
     UPDATE_LIKES_FAIL,
     UPDATE_LIKES_REQUEST,
     UPDATE_LIKES_SUCCESS,
@@ -143,6 +149,56 @@ export const createPost = (postData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ADD_POST_FAIL,
+            payload: { msg: error.response.statusText, status: error.response.status },
+        });
+    }
+};
+
+export const addComment = (postId, comment) => async (dispatch) => {
+    try {
+        dispatch({
+            type: ADD_COMMENT_REQUEST,
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        const { data } = await axios.post(`/api/posts/${postId}/comment`, comment, config);
+
+        dispatch({
+            type: ADD_COMMENT_SUCCESS,
+            payload: data,
+        });
+
+        dispatch(getPostById(postId));
+    } catch (error) {
+        dispatch({
+            type: ADD_COMMENT_FAIL,
+            payload: { msg: error.response.statusText, status: error.response.status },
+        });
+    }
+};
+
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+    try {
+        dispatch({
+            type: REMOVE_COMMENT_REQUEST,
+        });
+
+        const { data } = await axios.delete(`/api/posts/${postId}/comment/${commentId}`);
+
+        dispatch({
+            type: REMOVE_COMMENT_SUCCESS,
+            payload: data,
+        });
+
+        dispatch(getPostById(postId));
+    } catch (error) {
+        dispatch({
+            type: REMOVE_COMMENT_FAIL,
             payload: { msg: error.response.statusText, status: error.response.status },
         });
     }

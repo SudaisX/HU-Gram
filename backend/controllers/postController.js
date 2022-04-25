@@ -172,12 +172,13 @@ const createComment = asyncHandler(async (req, res) => {
 
     try {
         const user = await User.findById(req.user.id).select('-password');
+        const profile = await Profile.findOne({ user: req.user.id });
         const post = await Post.findById(req.params.id);
 
         const newComment = new Post({
             text: req.body.text,
             name: user.name,
-            avatar: user.avatar,
+            avatar: profile.pfp ? profile.pfp : user.avatar,
             user: req.user.id,
         });
 

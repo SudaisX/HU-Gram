@@ -16,6 +16,8 @@ import {
     getPostsReducer,
     getPostReducer,
     likesReducer,
+    addCommentReducer,
+    deleteCommentReducer,
 } from './reducers/postReducers';
 
 const rootReducer = combineReducers({
@@ -33,6 +35,8 @@ const rootReducer = combineReducers({
     postLikes: likesReducer,
     deletePost: deletePostReducer,
     addPost: createPostReducer,
+    addComment: addCommentReducer,
+    deleteComment: deleteCommentReducer,
 });
 
 const tokenFromStorage = localStorage.getItem('token') ? localStorage.getItem('token') : null;
