@@ -9,7 +9,7 @@ import { getCurrentProfile, createUpdateProfile } from '../actions/profileAction
 
 const CreateProfileScreen = () => {
     const [birthday, setBirthday] = useState('');
-    const [pfp, setPfp] = useState('');
+    const [pfp, setPfp] = useState('/images/pfp.png');
     const [major, setMajor] = useState('Computer Science');
     const [minor, setMinor] = useState('');
     const [batch, setBatch] = useState('2024');
