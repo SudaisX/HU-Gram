@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-import { addLike, removeLike } from '../actions/postActions';
+import { addLike, deletePost, removeLike } from '../actions/postActions';
 import { Button, Card, Col, Row } from 'react-bootstrap';
+import Loader from './Loader';
 
 const PostItem = ({ post }) => {
     const dispatch = useDispatch();
@@ -11,14 +12,16 @@ const PostItem = ({ post }) => {
     const user = useSelector((state) => state.loadedUser);
     const { userInfo } = user;
 
-    const deleteHandler = (id) => {};
+    const deleteHandler = (id) => {
+        dispatch(deletePost(id));
+    };
 
     return (
         <Card className='mt-5' style={{ width: '80%' }}>
             <Card.Body>
                 <Row>
                     <Col md={2} style={{ textAlign: 'center' }}>
-                        <Link to={`/profile/${userInfo._id}`}>
+                        <Link to={`/profile/${post.user}`}>
                             <Card.Img
                                 src={post.avatar}
                                 style={{
@@ -28,8 +31,8 @@ const PostItem = ({ post }) => {
                                     borderRadius: '50%',
                                 }}
                             />
-                            <Card.Title className='mt-2'>{post.name}</Card.Title>
                         </Link>
+                        <Card.Title className='mt-2'>{post.name}</Card.Title>
                     </Col>
                     <Col>
                         <Row style={{ minHeight: '74px' }}>

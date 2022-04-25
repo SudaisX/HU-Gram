@@ -10,7 +10,13 @@ import {
     getProfilesReducer,
     getProfileByIdReducer,
 } from './reducers/profileReducers';
-import { getPostsReducer, likesReducer } from './reducers/postReducers';
+import {
+    createPostReducer,
+    deletePostReducer,
+    getPostsReducer,
+    getPostReducer,
+    likesReducer,
+} from './reducers/postReducers';
 
 const rootReducer = combineReducers({
     userLogin: userLoginReducer,
@@ -23,7 +29,10 @@ const rootReducer = combineReducers({
     deleteEducation: deleteEducationReducer,
     deleteExperience: deleteExperienceReducer,
     allPosts: getPostsReducer,
+    postById: getPostReducer,
     postLikes: likesReducer,
+    deletePost: deletePostReducer,
+    addPost: createPostReducer,
 });
 
 const tokenFromStorage = localStorage.getItem('token') ? localStorage.getItem('token') : null;

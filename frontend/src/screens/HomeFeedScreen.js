@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../actions/postActions';
 import Loader from '../components/Loader';
 import PostItem from '../components/PostItem';
+import PostForm from '../components/PostForm';
 
 const HomeFeedScreen = () => {
     const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const HomeFeedScreen = () => {
                     </p>
 
                     {/* {PostForm} */}
+                    <PostForm />
 
                     {posts.map((post) => (
                         <PostItem key={post._id} post={post} />

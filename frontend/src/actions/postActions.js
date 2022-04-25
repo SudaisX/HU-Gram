@@ -1,8 +1,17 @@
 import axios from 'axios';
 import {
+    ADD_POST_FAIL,
+    ADD_POST_REQUEST,
+    ADD_POST_SUCCESS,
+    DELETE_POST_FAIL,
+    DELETE_POST_REQUEST,
+    DELETE_POST_SUCCESS,
     GET_POSTS_FAIL,
     GET_POSTS_REQUEST,
     GET_POSTS_SUCCESS,
+    GET_POST_FAIL,
+    GET_POST_REQUEST,
+    GET_POST_SUCCESS,
     UPDATE_LIKES_FAIL,
     UPDATE_LIKES_REQUEST,
     UPDATE_LIKES_SUCCESS,
@@ -28,6 +37,26 @@ export const getAllPosts = () => async (dispatch) => {
     }
 };
 
+export const getPostById = (postId) => async (dispatch) => {
+    try {
+        dispatch({
+            type: GET_POST_REQUEST,
+        });
+
+        const { data } = await axios.get(`/api/posts/${postId}`);
+
+        dispatch({
+            type: GET_POST_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_POST_FAIL,
+            payload: { msg: error.response.statusText, status: error.response.status },
+        });
+    }
+};
+
 export const addLike = (postId) => async (dispatch) => {
     try {
         dispatch({
@@ -40,6 +69,7 @@ export const addLike = (postId) => async (dispatch) => {
             type: UPDATE_LIKES_SUCCESS,
             payload: { postId, likes: data },
         });
+        dispatch(getAllPosts());
     } catch (error) {
         dispatch({
             type: UPDATE_LIKES_FAIL,
@@ -60,9 +90,59 @@ export const removeLike = (postId) => async (dispatch) => {
             type: UPDATE_LIKES_SUCCESS,
             payload: { postId, likes: data },
         });
+
+        dispatch(getAllPosts());
     } catch (error) {
         dispatch({
             type: UPDATE_LIKES_FAIL,
+            payload: { msg: error.response.statusText, status: error.response.status },
+        });
+    }
+};
+
+export const deletePost = (postId) => async (dispatch) => {
+    try {
+        dispatch({
+            type: DELETE_POST_REQUEST,
+        });
+
+        const { data } = await axios.delete(`/api/posts/${postId}`);
+
+        dispatch({
+            type: DELETE_POST_SUCCESS,
+            payload: data,
+        });
+        dispatch(getAllPosts());
+    } catch (error) {
+        dispatch({
+            type: DELETE_POST_FAIL,
+            payload: { msg: error.response.statusText, status: error.response.status },
+        });
+    }
+};
+
+export const createPost = (postData) => async (dispatch) => {
+    try {
+        dispatch({
+            type: ADD_POST_REQUEST,
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        const { data } = await axios.post(`/api/posts`, postData, config);
+
+        dispatch({
+            type: ADD_POST_SUCCESS,
+            payload: data,
+        });
+        dispatch(getAllPosts());
+    } catch (error) {
+        dispatch({
+            type: ADD_POST_FAIL,
             payload: { msg: error.response.statusText, status: error.response.status },
         });
     }
