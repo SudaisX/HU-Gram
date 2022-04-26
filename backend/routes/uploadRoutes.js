@@ -1,9 +1,11 @@
 import express from 'express';
 import path from 'path';
 import multer from 'multer';
+// import { v2 as cloudinary } from 'cloudinary';
+import { storage, cloudinary } from '../config/cloudinary.js';
 const router = express.Router();
 
-const storage = multer.diskStorage({
+const storageLocal = multer.diskStorage({
     destination(req, file, callback) {
         callback(null, 'uploads');
     },
@@ -25,15 +27,21 @@ function checkFileType(file, callback) {
     }
 }
 
-const upload = multer({
-    storage,
+const uploadLocal = multer({
+    storageLocal,
     fileFilter: function (req, file, callback) {
         checkFileType(file, callback);
     },
 });
 
-router.post('/', upload.single('image'), (req, res) => {
+const upload = multer({ storage });
+
+router.post('/', uploadLocal.single('image'), (req, res) => {
     res.send(`/${req.file.path}`);
+});
+
+router.post('/cloudinary', upload.single('image'), (req, res) => {
+    res.send(`${req.file.path}`);
 });
 
 export default router;

@@ -5,16 +5,17 @@ import colors from 'colors';
 import path from 'path';
 import connectDB from './config/db.js';
 
+// ENV Config
+dotenv.config();
+
 import userRoutes from './routes/userRoutes.js';
 import postRoutes from './routes/postRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 
-// ENV Config
-dotenv.config();
-
 // Connect to Database
 connectDB();
+
 // Initialize Express App
 const app = express();
 

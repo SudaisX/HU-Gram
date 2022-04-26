@@ -38,7 +38,7 @@ const PostForm = () => {
                 },
             };
 
-            const { data } = await axios.post('/api/upload', formData, config);
+            const { data } = await axios.post('/api/upload/cloudinary', formData, config);
 
             setImage(data);
             setUploading(false);

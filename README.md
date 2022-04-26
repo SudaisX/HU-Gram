@@ -13,6 +13,11 @@ NODE_ENV = development
 PORT = 5000
 MONGO_URI = your mongodb uri
 JWT_SECRET = 'abc123'
+
+(if youre using cloudinary route for uploads)
+CLOUDINARY_KEY = your key
+CLOUDINARY_NAME = your name
+CLOUDINARY_SECRET = your secret
 ```
 
 ### Install Dependencies (frontend & backend)
