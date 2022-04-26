@@ -4,6 +4,7 @@ const ProfileTop = ({
     profile: {
         user: { name },
         major,
+        minor,
         batch,
         pfp,
         social,
@@ -17,6 +18,12 @@ const ProfileTop = ({
                 {name}
             </h1>
             <p className='lead'>{major}</p>
+            {minor && (
+                <p>
+                    <span>{minor} Minor</span>
+                </p>
+            )}
+
             <p>
                 <span>Class of {batch}</span>
             </p>

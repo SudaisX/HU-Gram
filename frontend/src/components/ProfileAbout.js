@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 
 const ProfileAbout = ({
     profile: {
@@ -6,6 +7,7 @@ const ProfileAbout = ({
         skills,
         hobbies,
         interests,
+        birthday,
         user: { name },
     },
 }) => {
@@ -18,6 +20,15 @@ const ProfileAbout = ({
                     <hr />
                 </>
             )}
+
+            <h2 className='text-primary'>
+                <i className='fa-solid fa-cake-candles'></i>
+            </h2>
+            <div className='skills'>
+                {birthday && <Moment format='DD/MM/YYYY'>{birthday}</Moment>}
+            </div>
+            <hr />
+
             <h2 className='text-primary'>Interests</h2>
             <div className='skills'>
                 {interests &&
@@ -28,6 +39,7 @@ const ProfileAbout = ({
                     ))}
             </div>
             <hr />
+
             <h2 className='text-primary'>Hobbies</h2>
             <div className='skills'>
                 {hobbies &&
