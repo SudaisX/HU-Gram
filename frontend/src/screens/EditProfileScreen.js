@@ -187,11 +187,11 @@ const EditProfileScreen = () => {
                         <h2>General</h2>
                         <Form.Group controlId='pfp' className='mt-3'>
                             <Form.Label>Profile Picture (jpg, jpeg, png only)</Form.Label>
-                            <Form.Control
+                            {/* <Form.Control
                                 type='text'
                                 placeholder='Enter a URL for an Image'
                                 value={pfp}
-                                onChange={(e) => setPfp(e.target.value)}></Form.Control>
+                                onChange={(e) => setPfp(e.target.value)}></Form.Control> */}
                             <Form.Control
                                 type='file'
                                 label='Choose File'
