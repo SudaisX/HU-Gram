@@ -4,6 +4,7 @@ import { validationResult } from 'express-validator';
 import generateToken from '../utils/generateToken.js';
 import User from '../models/userModel.js';
 import Profile from '../models/profileModel.js';
+import Post from '../models/postModel.js';
 
 // @desc    Register a New User
 // @route   POST api/users
@@ -59,6 +60,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const deleteUser = asyncHandler(async (req, res) => {
     try {
         // @todo Remove User's Posts
+        await Post.findOneAndRemove({ user: req.params.userId });
 
         // Remove Profile
         await Profile.findOneAndRemove({ user: req.params.userId });

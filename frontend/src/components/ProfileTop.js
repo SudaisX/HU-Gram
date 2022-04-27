@@ -23,7 +23,6 @@ const ProfileTop = ({
                     <span>{minor} Minor</span>
                 </p>
             )}
-
             <p>
                 <span>Class of {batch}</span>
             </p>

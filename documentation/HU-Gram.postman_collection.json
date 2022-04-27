@@ -1,0 +1,1496 @@
+{
+	"info": {
+		"_postman_id": "6c67431f-3643-470f-be4f-da3d111a2784",
+		"name": "HU-Gram",
+		"description": "# Introduction\nAPI for the HU-Gram Application\n\n# Overview\nAPI mainly deals the following routes:\n<ol>\n<li>Users & Auth</li>\n<li>Profiles</li>\n<li>Posts</li>\n</ol>\n\n# Authentication\nKey | Type | Description\n--- | --- | --- \nx-auth-token | authToken | authorization token sent to the header for every request\n\n# Error Codes\nWhat errors and status codes can a user expect?\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users & Auth",
+			"item": [
+				{
+					"name": "Delete User and their Profile and Posts",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/622e20897f34778e18639921",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"622e20897f34778e18639921"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/profile",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"msg\": \"User Deleted\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"testing\",\r\n    \"email\":\"tes3ting@st.habib.edu.pk\",\r\n    \"password\":\"123456\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"sudais\",\r\n    \"email\":\"sy06541@st.habib.edu.pk\",\r\n    \"password\":\"123456\"\r\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/api/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"_id\": \"622e203c7f34778e1863991e\",\n    \"name\": \"sudais\",\n    \"email\": \"sy06541@st.habib.edu.pk\",\n    \"avatar\": \"/images/defaultpfp.png\",\n    \"isAdmin\": false,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmUyMDNjN2YzNDc3OGUxODYzOTkxZSIsImlhdCI6MTY0NzE5MDA3NiwiZXhwIjoxNjQ5NzgyMDc2fQ.OKnaKrv5WXCTC0W6inT7bjLaoBUWdhpG4Ey2AwKBGOI\"\n}"
+						},
+						{
+							"name": "User Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"sudais\",\r\n    \"email\":\"sudais1234@example.com\",\r\n    \"password\":\"123456\"\r\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/api/users",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"msg\": \"User already exists\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Auth User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmUyMDNjN2YzNDc3OGUxODYzOTkxZSIsImlhdCI6MTY0NzE5MDA3NiwiZXhwIjoxNjQ5NzgyMDc2fQ.OKnaKrv5WXCTC0W6inT7bjLaoBUWdhpG4Ey2AwKBGOI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/auth",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Valid Auth Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmUyMDNjN2YzNDc3OGUxODYzOTkxZSIsImlhdCI6MTY0NzE5MDA3NiwiZXhwIjoxNjQ5NzgyMDc2fQ.OKnaKrv5WXCTC0W6inT7bjLaoBUWdhpG4Ey2AwKBGOI",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/auth",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"auth"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"_id\": \"622e203c7f34778e1863991e\",\n    \"name\": \"hamna\",\n    \"email\": \"hamna@example.com\",\n    \"password\": \"$2a$10$yV4bsd.FiJQ/0Dg5rNuU9OIyYkbV50OfqYshUhB44mxwRSii.hfj6\",\n    \"avatar\": \"/images/defaultpfp.png\",\n    \"isAdmin\": false,\n    \"createdAt\": \"2022-03-13T16:47:56.153Z\",\n    \"updatedAt\": \"2022-03-13T16:47:56.153Z\",\n    \"__v\": 0\n}"
+						},
+						{
+							"name": "Invalid Auth Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0MzIyNDAyOSwiZXhwIjoxNjQ1ODE2MDI5fQ.7ET8rTj5zSP9Locqc-jBku-gg14Zgcrvj61pLjaJEAI",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/auth",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"auth"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"msg\": \"Invalid Token\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sudais@example.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid Credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"sudais@example.com\",\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/auth?x-auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0MzIyNDAyOSwiZXhwIjoxNjQ1ODE2MDI5fQ.7ET8rTj5zSP9Locqc-jBku-gg14Zgcrvj61pLjaJEAI",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"auth"
+									],
+									"query": [
+										{
+											"key": "x-auth-token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0MzIyNDAyOSwiZXhwIjoxNjQ1ODE2MDI5fQ.7ET8rTj5zSP9Locqc-jBku-gg14Zgcrvj61pLjaJEAI"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"msg\": \"Invalid Credentials\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Valid Credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"sudais@example.com\",\r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/auth?x-auth-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0MzIyNDAyOSwiZXhwIjoxNjQ1ODE2MDI5fQ.7ET8rTj5zSP9Locqc-jBku-gg14Zgcrvj61pLjaJEAI",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"auth"
+									],
+									"query": [
+										{
+											"key": "x-auth-token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0MzIyNDAyOSwiZXhwIjoxNjQ1ODE2MDI5fQ.7ET8rTj5zSP9Locqc-jBku-gg14Zgcrvj61pLjaJEAI"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"_id\": \"61f19bdc5974cb4b06c32f28\",\n    \"name\": \"sudais\",\n    \"email\": \"sudais@example.com\",\n    \"isAdmin\": false,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0NzE5MDU5NCwiZXhwIjoxNjQ5NzgyNTk0fQ.Fk7BSKOGc2eh_vcjzc_ZOvoxQEH_9lFcMXpONxuVkxQ\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/625355f9f0d22913c384f19f",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"625355f9f0d22913c384f19f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-auth-token",
+										"value": "user token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\r\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"_id\": \"post id\",\r\n    \"text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\r\n    \"name\": \"User name\",\r\n    \"user\": \"user _id\",\r\n    \"likes\": [],\r\n    \"comments\": [],\r\n    \"date\": \"date in ISO\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all Posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/posts",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "user token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/posts",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"post id\",\n        \"text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n        \"name\": \"User name\",\n        \"user\": \"user _id\",\n        \"likes\": [],\n        \"comments\": [],\n        \"date\": \"date in ISO\"\n    },\n    {\n        \"_id\": \"post id\",\n        \"text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n        \"name\": \"User name\",\n        \"user\": \"user _id\",\n        \"likes\": [],\n        \"comments\": [],\n        \"date\": \"date in ISO\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Post by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/posts/625370c254e52500d6f51c88",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"625370c254e52500d6f51c88"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-auth-token",
+										"value": "user token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/posts/:postID",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										":postID"
+									],
+									"variable": [
+										{
+											"key": "postID",
+											"value": null
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"_id\": \"post id\",\r\n    \"text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\r\n    \"name\": \"User name\",\r\n    \"user\": \"user _id\",\r\n    \"likes\": [],\r\n    \"comments\": [],\r\n    \"date\": \"date in ISO\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all User's Posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "user token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/posts/user/:userID",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"user",
+								":userID"
+							],
+							"variable": [
+								{
+									"key": "userID",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-auth-token",
+										"value": "user token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/posts/user/:userID",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"user",
+										":userID"
+									],
+									"variable": [
+										{
+											"key": "userID",
+											"value": null
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"_id\": \"post id\",\r\n        \"text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\r\n        \"name\": \"User name\",\r\n        \"user\": \"user _id\",\r\n        \"likes\": [],\r\n        \"comments\": [],\r\n        \"date\": \"date in ISO\"\r\n    }\r\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete a Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba3",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/posts/625370c254e52500d6f51c88",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"625370c254e52500d6f51c88"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a Post",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/posts/:postID",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										":postID"
+									],
+									"variable": [
+										{
+											"key": "postID",
+											"value": null
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"msg\": \"post removed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Like a Post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/posts/6253709fe9e95af272a4c36e/like",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"6253709fe9e95af272a4c36e",
+								"like"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Liked a post",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "user token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/posts/like/:postID",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"like",
+										":postID"
+									],
+									"variable": [
+										{
+											"key": "postID",
+											"value": null
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"_id\": \"like ID\",\r\n        \"user\": \"user _id\"\r\n    },\r\n    {\r\n        \"_id\": \"like ID 2\",\r\n        \"user\": \"user _id 2\"\r\n    }\r\n]"
+						}
+					]
+				},
+				{
+					"name": "Unlike a Post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/posts/6253709fe9e95af272a4c36e/unlike",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"6253709fe9e95af272a4c36e",
+								"unlike"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unliked a post",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "user token",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/posts/like/:postID",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"like",
+										":postID"
+									],
+									"variable": [
+										{
+											"key": "postID",
+											"value": null
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "Comment on a Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"bimo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/posts/6253709fe9e95af272a4c36e/comment",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"6253709fe9e95af272a4c36e",
+								"comment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Comment on a Post",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-auth-token",
+										"value": "user token",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"That's a really cool post\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/posts/comment/:postID",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"comment",
+										":postID"
+									],
+									"variable": [
+										{
+											"key": "postID",
+											"value": null
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"_id\": \"comment _id\",\r\n        \"text\": \"This is an example old comment\",\r\n        \"name\": \"User Name\",\r\n        \"user\": \"user _id\",\r\n        \"date\": \"date in ISO\"\r\n    },\r\n    {\r\n        \"_id\": \"comment _id\",\r\n        \"text\": \"That's a really cool post\",\r\n        \"name\": \"User Name\",\r\n        \"user\": \"user _id\",\r\n        \"date\": \"date in ISO\"\r\n    }\r\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/posts/6253709fe9e95af272a4c36e/comment/62538182862690e272872014",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"6253709fe9e95af272a4c36e",
+								"comment",
+								"62538182862690e272872014"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profiles",
+			"item": [
+				{
+					"name": "Get Current User's Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0ODMzMzMzOCwiZXhwIjoxNjUwOTI1MzM4fQ.ROunDeFuOuKOI8W7Y17i9Lb_YWcIO5PeifkWtBN-_Jc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/profile/me",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Profile Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/profile/me",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"profile",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"profile id in the collection\",\n        \"user\": {\n            \"_id\": \"622e203c7f34778e1863991e\",\n            \"name\": \"hamna\",\n            \"email\": \"hamna@example.com\"\n        },\n        \"major\": \"Computer Science\",\n        \"minor\": \"Communication and Design\",\n        \"batch\": \"2024\",\n        \"website\": \"sudais.tech\",\n        \"birthday\": \"01/01/2000 in ISO format\",\n        \"interests\": [\n            \"interest 1\",\n            \"interest 2\"\n        ],\n        \"skills\": [\n            \"skill1\",\n            \"skill2\"\n        ],\n        \"bio\": \"user's bio\",\n        \"clubs\": [\n            \"CSEC\",\n            \"Entrepreneurship Club\"\n        ],\n        \"social\": {\n            \"twitter\": \"username\",\n            \"facecbook\": \"username\",\n            \"youtube\": \"username\",\n            \"github\": \"sudaisx\"\n        }\n    },\n    {\n        \"_id\": \"profile id in the collection\",\n        \"user\": {\n            \"_id\": \"622e203c7f34778e1863991e\",\n            \"name\": \"hamna\",\n            \"email\": \"hamna@example.com\"\n        },\n        \"major\": \"Computer Science\",\n        \"minor\": \"Communication and Design\",\n        \"batch\": \"2024\",\n        \"website\": \"sudais.tech\",\n        \"birthday\": \"01/01/2000 in ISO format\",\n        \"interests\": [\n            \"interest 1\",\n            \"interest 2\"\n        ],\n        \"skills\": [\n            \"skill1\",\n            \"skill2\"\n        ],\n        \"bio\": \"user's bio\",\n        \"clubs\": [\n            \"CSEC\",\n            \"Entrepreneurship Club\"\n        ],\n        \"social\": {\n            \"twitter\": \"username\",\n            \"facecbook\": \"username\",\n            \"youtube\": \"username\",\n            \"github\": \"sudaisx\"\n        }\n    }\n]"
+						},
+						{
+							"name": "No Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/profile/me",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"profile",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"msg\": \"There is no profile for this user\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Create/Update User Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTM1NWY5ZjBkMjI5MTNjMzg0ZjE5ZiIsImlhdCI6MTY0OTYyODY2NSwiZXhwIjoxNjUyMjIwNjY1fQ.n9rd1hAGCiLkFJOuqrAfPj4H0IKD4uA9vQRDKuExcd4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"major\": \"Computer Science\",\r\n    \"minor\": \"Communication and Design\",\r\n    \"batch\": \"2024\",\r\n    \"website\": \"sudais.tech\",\r\n    \"birthday\": \"2000-05-30T19:00:00.000Z\",\r\n    \"interests\": \"interest1, interest2\",\r\n    \"skills\": \"skill1, skill2, skill3\",\r\n    \"hobbies\": \"sleeping\",\r\n    \"bio\": \"hi\",\r\n    \"clubs\": [\"CSEC\", \"Entrepreneurship Club\", \"testing\"],\r\n    \"twitter\": \"username\",\r\n    \"facecbook\": \"username\",\r\n    \"youtube\": \"username\",\r\n    \"github\": \"sudaisx\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Profile Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"major\": \"Computer Science\",\r\n    \"minor\": \"Communication and Design\",\r\n    \"batch\": \"2024\",\r\n    \"website\": \"sudais.tech\",\r\n    \"birthday\": \"01/01/2000\",\r\n    \"interests\": \"interest1, interest2\",\r\n    \"skills\": \"skill1, skill2, skill3\",\r\n    \"bio\": \"ijfaeifonaeifna\",\r\n    \"clubs\": \"CSEC, Entrepreneurship Club\",\r\n    \"twitter\": \"username\",\r\n    \"facecbook\": \"username\",\r\n    \"youtube\": \"username\",\r\n    \"github\": \"sudaisx\"\r\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/api/profile",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"_id\": \"profile id in the collection\",\n    \"user\": \"user _id\",\n    \"major\": \"Computer Science\",\n    \"minor\": \"Communication and Design\",\n    \"batch\": \"2024\",\n    \"website\": \"sudais.tech\",\n    \"birthday\": \"01/01/2000 in ISO format\",\n    \"interests\": [\n        \"interest 1\",\n        \"interest 2\"\n    ],\n    \"skills\": [\n        \"skill1\",\n        \"skill2\"\n    ],\n    \"bio\": \"user's bio\",\n    \"clubs\": [\n        \"CSEC\",\n        \"Entrepreneurship Club\"\n    ],\n    \"social\": {\n        \"twitter\": \"username\",\n        \"facecbook\": \"username\",\n        \"youtube\": \"username\",\n        \"github\": \"sudaisx\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"experience\": [\"experience1\", \"experience2\"],\r\n    \"minor\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update User Profile",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"experience\": [\"experience1\", \"experience2\"],\r\n    \"minor\": \"\"\r\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/api/profile",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"_id\": \"profile id in the collection\",\r\n    \"user\": \"user _id\",\r\n    \"major\": \"Computer Science\",\r\n    \"minor\": \"\",\r\n    \"batch\": \"2024\",\r\n    \"website\": \"sudais.tech\",\r\n    \"birthday\": \"01/01/2000 in ISO format\",\r\n    \"interests\": [\r\n        \"interest 1\",\r\n        \"interest 2\"\r\n    ],\r\n    \"skills\": [\r\n        \"skill1\",\r\n        \"skill2\"\r\n    ],\r\n    \"bio\": \"user's bio\",\r\n    \"clubs\": [\r\n        \"CSEC\",\r\n        \"Entrepreneurship Club\"\r\n    ],\r\n    \"social\": {\r\n        \"twitter\": \"username\",\r\n        \"facecbook\": \"username\",\r\n        \"youtube\": \"username\",\r\n        \"github\": \"sudaisx\"\r\n    },\r\n    \"experience\": [\r\n        \"experience 1\",\r\n        \"experience 2\"\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Profiles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/profile",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Profiles Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/api/profile",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"profile"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"profile id in the collection\",\n        \"user\": {\n            \"_id\": \"622e203c7f34778e1863991e\",\n            \"name\": \"hamna\",\n            \"email\": \"hamna@example.com\"\n        },\n        \"major\": \"Computer Science\",\n        \"minor\": \"Communication and Design\",\n        \"batch\": \"2024\",\n        \"website\": \"sudais.tech\",\n        \"birthday\": \"01/01/2000 in ISO format\",\n        \"interests\": [\n            \"interest 1\",\n            \"interest 2\"\n        ],\n        \"skills\": [\n            \"skill1\",\n            \"skill2\"\n        ],\n        \"bio\": \"user's bio\",\n        \"clubs\": [\n            \"CSEC\",\n            \"Entrepreneurship Club\"\n        ],\n        \"social\": {\n            \"twitter\": \"username\",\n            \"facecbook\": \"username\",\n            \"youtube\": \"username\",\n            \"github\": \"sudaisx\"\n        }\n    },\n    {\n        \"_id\": \"profile id in the collection\",\n        \"user\": {\n            \"_id\": \"622e203c7f34778e1863991e\",\n            \"name\": \"hamna\",\n            \"email\": \"hamna@example.com\"\n        },\n        \"major\": \"Computer Science\",\n        \"minor\": \"Communication and Design\",\n        \"batch\": \"2024\",\n        \"website\": \"sudais.tech\",\n        \"birthday\": \"01/01/2000 in ISO format\",\n        \"interests\": [\n            \"interest 1\",\n            \"interest 2\"\n        ],\n        \"skills\": [\n            \"skill1\",\n            \"skill2\"\n        ],\n        \"bio\": \"user's bio\",\n        \"clubs\": [\n            \"CSEC\",\n            \"Entrepreneurship Club\"\n        ],\n        \"social\": {\n            \"twitter\": \"username\",\n            \"facecbook\": \"username\",\n            \"youtube\": \"username\",\n            \"github\": \"sudaisx\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Profile by User ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/profile/user/61f19bdc5974cb4b06c32f28",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"user",
+								"61f19bdc5974cb4b06c32f28"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/profile/user/622e203c7f34778e1863991e",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"profile",
+										"user",
+										"622e203c7f34778e1863991e"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"_id\": \"profile id in the collection\",\n    \"user\": {\n        \"_id\": \"622e203c7f34778e1863991e\",\n        \"name\": \"hamna\",\n        \"email\": \"hamna@example.com\"\n    },\n    \"major\": \"Computer Science\",\n    \"minor\": \"Communication and Design\",\n    \"batch\": \"2024\",\n    \"website\": \"sudais.tech\",\n    \"birthday\": \"01/01/2000 in ISO format\",\n    \"interests\": [\n        \"interest 1\",\n        \"interest 2\"\n    ],\n    \"skills\": [\n        \"skill1\",\n        \"skill2\"\n    ],\n    \"bio\": \"user's bio\",\n    \"clubs\": [\n        \"CSEC\",\n        \"Entrepreneurship Club\"\n    ],\n    \"social\": {\n        \"twitter\": \"username\",\n        \"facecbook\": \"username\",\n        \"youtube\": \"username\",\n        \"github\": \"sudaisx\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Experience",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Tech Lead\",\r\n    \"company\": \"HUMUN\",\r\n    \"from\": \"01/01/2020\",\r\n    \"current\": false,\r\n    \"description\": \"khuwari\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/profile/experience",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"experience"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Experience",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/profile/experience/62535fa872f82177592a3844",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"experience",
+								"62535fa872f82177592a3844"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Education",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"school\": \"Credo\",\r\n    \"degree\": \"Bsc\",\r\n    \"fieldofstudy\": \"Comp Sci\",\r\n    \"current\": true,\r\n    \"from\": \"01/01/2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/profile/education",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"education"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Education",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/profile/education/625368bc53f69ab3588d1e0f",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"education",
+								"625368bc53f69ab3588d1e0f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Uploads",
+			"item": [
+				{
+					"name": "Upload Image Locally",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/upload",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image to Cloudinary",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjE5YmRjNTk3NGNiNGIwNmMzMmYyOCIsImlhdCI6MTY0OTQxMzU4NiwiZXhwIjoxNjUyMDA1NTg2fQ.AAutG_WZq0NgJLsTgjAenj6qzoj3JSr7QdVBRhQ0Ba4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/upload/cloudinary",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"upload",
+								"cloudinary"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:5000"
+		}
+	]
+}

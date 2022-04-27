@@ -30,4 +30,13 @@ const isAdmin = (req, res, next) => {
     }
 };
 
-export { protect, isAdmin };
+const isVerified = (req, res, next) => {
+    if (req.user && req.user.isVerified) {
+        next();
+    } else {
+        res.status(401);
+        throw new Error('Not verified');
+    }
+};
+
+export { protect, isAdmin, isVerified };
