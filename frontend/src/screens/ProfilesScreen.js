@@ -21,7 +21,7 @@ const ProfilesScreen = () => {
 
     return (
         <>
-            {loading ? (
+            {loading !== false ? (
                 <Loader />
             ) : (
                 <Container className='mt-3 mb-5'>

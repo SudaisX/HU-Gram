@@ -71,6 +71,7 @@ const deleteUser = asyncHandler(async (req, res) => {
         res.json({ msg: 'User and their Profile and their Posts have been deleted' });
     } catch (error) {
         console.error(error.message);
+
         if (error.kind == 'ObjectId') {
             return res.status(400).json({ msg: 'Profile not found' });
         }
