@@ -12,7 +12,7 @@ const ProfileCard = ({ profile }) => {
                     <Card.Img
                         variant='top'
                         src={profile.pfp}
-                        style={{ minHeight: '300px', objectFit: 'cover' }}
+                        style={{ height: '300px', objectFit: 'cover' }}
                     />
                 </Link>
 
